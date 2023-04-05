@@ -1,0 +1,1 @@
+alert('Hello, '+prompt('What is your name?')+'! How are you?')
