@@ -2,8 +2,8 @@ let year = prompt(`Введіть рік народження? (YYYY)`);
 if (year !== null && year.trim() !== '' && !isNaN( +year )){
     let now = new Date;
     year = now.getFullYear()-year;
-    if (year > 100){
-        year = `Отакої. Тобі більше ста років. Ти Дункан Маклауд?`;
+    if (year > 100 || year < 0){
+        year = `Отакої. Або ти ще не народився, або ти Дункан Маклауд. =)`;
     } else {
         year = `Ваш вік ${year}`;
     }
