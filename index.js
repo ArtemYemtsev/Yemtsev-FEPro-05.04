@@ -54,9 +54,13 @@ let users = [
     "address": "314 Dunne Place, Bawcomville, Guam, 9053"
     }
     ]
+
+function strToNum (obj){
+    return Number(obj.balance.replace(/[$,]/g, ""));
+}
 // Фильтрация users по балансу > 2000
 function balanceFilter (obj){
-    return Number(obj.balance.replace(/[$,]/g, "")) > 2000;
+    return strToNum(obj) > 2000;
 }
 
 let userPhones = [];
@@ -68,8 +72,8 @@ let userPhones = [];
 console.log(userPhones);
 
 // Суммирование всех балансов
-let sumBalance = Number();
+let sumBalance = 0;
     users.forEach(obj =>{
-        return sumBalance += Number(obj.balance.replace(/[$,]/g, ""));
+        return sumBalance += strToNum(obj);
     })
 console.log(sumBalance.toFixed(2));
