@@ -11,7 +11,7 @@ class Human {
 }
 
 class Car {
-    driver = new Human({name: undefined, age: undefined})
+    driver = new Human({})
     constructor (options){
         this.mark = options.mark
         this.model = options.model
