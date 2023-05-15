@@ -13,7 +13,7 @@ class Student {
     }
 
     avgGrade(){
-        console.log(`Средний бал = ${avg(this.grade).toFixed()}`)
+        console.log(`Средний бал = ${Student.avg(this.grade).toFixed()}`)
         return this
     }
 
@@ -23,18 +23,18 @@ class Student {
     }
 
     present(){
-        addVisit(this, true)
+        Student.addVisit(this, true)
         return this
     }
 
     absent(){
-        addVisit(this, false)
+        Student.addVisit(this, false)
         return this
     }
 
     summary(){
-        let avgGrade = avg(this.grade).toFixed()
-        let avgVisits = avg(this.visits).toFixed(1)
+        let avgGrade = Student.avg(this.grade).toFixed()
+        let avgVisits = Student.avg(this.visits).toFixed(1)
         console.log(`${avgGrade}/${avgVisits}`)
         if (avgGrade >= 90 && avgVisits >= 0.9){
             console.log('Молодец!')
@@ -60,39 +60,35 @@ class Student {
         }
         return this
     }
-}
 
-// Функция добавления в массив посещения
-function addVisit(obj, value){
-    for (let i=0; i < obj.visits.length; i++){
-        if (obj.visits[i] === undefined){
-            obj.visits.splice(i,1,value)
-            break
+// Статический метод обработки посещений
+    static addVisit(obj, value){
+        for (let i=0; i < obj.visits.length; i++){
+            if (obj.visits[i] === undefined){
+                obj.visits.splice(i,1,value)
+                break
+            }
         }
     }
-}
 
-// Функция вычисления среднего значения массива
-function avg(arr) {
-    return arr.reduce((a, x) => a + x, 0) / arr.length
-}
-
-// Генеротор массива оценок
-function gradeGen (from, to){
-    let arr = []
-    for (let i = 0; i < 25; i++){
-        arr.push(Math.ceil(Math.random() * (to - from)) + from)
+// Статический метод вычисления стреднего
+    static avg(arr) {
+        return arr.reduce((a, x) => a + x, 0) / arr.length
     }
-    return arr
+    
+// Генератор оценок
+    static gradeGen (from, to){
+        let arr = []
+        for (let i = 0; i < 25; i++){
+            arr.push(Math.ceil(Math.random() * (to - from)) + from)
+        }
+        return arr
+    }
 }
 
-let gradeEx = gradeGen(89,100)
-let gradeWell = gradeGen(60,95)
-let gradeRediska = gradeGen(20,90)
-
-const stud1 = new Student({firstName: 'Oleg', lastName: 'Sviridonov', birthYear: '2000', grade: gradeEx})
-const stud2 = new Student({firstName: 'Nikita', lastName: 'Zelcer', birthYear: '2001', grade: gradeWell})
-const stud3 = new Student({firstName: 'Artur', lastName: 'Matur', birthYear: '2002', grade: gradeRediska})
+const stud1 = new Student({firstName: 'Oleg', lastName: 'Sviridonov', birthYear: '2000', grade: Student.gradeGen(89,100)})
+const stud2 = new Student({firstName: 'Nikita', lastName: 'Zelcer', birthYear: '2001', grade: Student.gradeGen(60,95)})
+const stud3 = new Student({firstName: 'Artur', lastName: 'Matur', birthYear: '2002', grade: Student.gradeGen(20,90)})
 
 stud1.info().age().autoPresent(25).avgGrade().summary()
 stud2.info().age().autoAbsent(3).autoPresent(22).avgGrade().summary()
