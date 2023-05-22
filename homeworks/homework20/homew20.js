@@ -16,24 +16,26 @@ function createButton(title){
 }
 
 function checkUrl(protocol){
-    function getUrl(){
-        let url = document.querySelector('input')
-        if (url.value === null || url.value.trim() === "" || Number.isInteger(+url.value) || isValidUrl(url.value) === false){
-            alert('Link is incorect')
-        } else return url.value
-    }
+    let url = document.querySelector('input')
     
     function isValidUrl(url){
         let link = /(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i;
         return link.test(url);
     }
 
-    
-    let urlArr = getUrl().split("")
+    if (url.value === null || url.value.trim() === "" || Number.isInteger(+url.value) || isValidUrl(url.value) === false){
+        alert('Link is incorect')
+    } 
+    else window.location.href = checkProtocol(url.value, protocol) 
+}
+
+function checkProtocol(url, protocol){
+
     const Http = ['h','t','t','p',':']
     const Https = ['h','t','t','p','s']
     let textArr = []
-
+    let urlArr = url.split("")
+    
     for (let i = 0; i < 5; i++){
         textArr.push(urlArr[i])
     }
@@ -59,11 +61,10 @@ createButton('https')
 
 document.getElementById('http').addEventListener('click',
     () =>{
-        console.log(checkUrl('http'))
-        window.location.href = checkUrl('http')
+        checkUrl('http')
     })
 
 document.getElementById('https').addEventListener('click',
     () =>{
-        window.location.href = checkUrl('https')
+        checkUrl('https')
     })
