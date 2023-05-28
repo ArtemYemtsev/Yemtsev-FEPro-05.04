@@ -36,6 +36,7 @@ body{
 }
 
 .shop__form {
+    position: relative;
     display: flex;
     padding: 15px;
     border: 1px solid #436d81;
@@ -58,10 +59,6 @@ body{
     color: #436d81;
     text-transform: uppercase;
 }
-
-/* .shop__form__category__list {
-
-} */
 
 .shop__form__category__list__item {
     margin-top: 15px;
@@ -94,10 +91,6 @@ body{
 .shop__form__cards__item:hover{
     transform: scale(1.1);
 }
-
-/* .shop__form__cards__item:nth-child(3n) {
-    margin-right: 0;
-} */
 
 .shop__form__cards__item:first-child {
     display: none;
@@ -134,9 +127,16 @@ body{
     font-weight: 700;
     padding: 10px 0;
 }
+.card__price,
+.card-info__price span{
+    margin-right: 5px;
+}
 
 .shop__form__info {
     background-color: #fff;
+    position: sticky;
+    top: 100px;
+    right: 50px;
 }
 
 .card-info {
