@@ -9,16 +9,18 @@ function toSlide(n){
 }
 
 function controls(n){
-    if(n > 0 && prev.classList.contains('disable')) {
-        prev.classList.remove('disable')
+    const classDisable = 'disable'
+    
+    if(n > 0 && prev.classList.contains(classDisable)) {
+        prev.classList.remove(classDisable)
     } else if (n == 0){
-        prev.classList.add('disable')
+        prev.classList.add(classDisable)
     }
 
     if (n === slides.length-1){
-        next.classList.add('disable')
-    } else if(n < slides.length-1 && next.classList.contains('disable')){
-        next.classList.remove('disable')
+        next.classList.add(classDisable)
+    } else if(n < slides.length-1 && next.classList.contains(classDisable)){
+        next.classList.remove(classDisable)
     }
 }
 
