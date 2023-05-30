@@ -4,7 +4,9 @@ let curentSlide = 0
 function toSlide(n){
     const classShowing = 'slider__block__item showing'
     const classNoShowing = 'slider__block__item'
+
     controls(n)
+    
     slides[curentSlide].className = classNoShowing
     curentSlide = n
     slides[curentSlide].className = classShowing

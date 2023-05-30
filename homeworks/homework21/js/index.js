@@ -74,6 +74,8 @@ let offers = [
 ]
 
 let offerBuffer = []
+const classActive = 'active'
+const classDisplay = 'display'
 
 let categoryList = document.getElementById('category')
 categoryList.addEventListener('click', (event) => {
@@ -81,7 +83,7 @@ categoryList.addEventListener('click', (event) => {
     clearCategory()
 
     if (event.target.tagName === 'LI'){
-        event.target.classList.add('active')
+        event.target.classList.add(classActive)
         getOffer(event.target.id)
         renderCards(offerBuffer)
     }
@@ -89,8 +91,8 @@ categoryList.addEventListener('click', (event) => {
 
 function clearCategory(){
     for (let item of categoryList.querySelectorAll('li')) {
-        if (item.classList.contains('active')){
-            item.classList.remove('active')
+        if (item.classList.contains(classActive)){
+            item.classList.remove(classActive)
         }
     }
 }
@@ -113,14 +115,14 @@ function renderCards (arr){
         card.querySelector('img').setAttribute('src',`images/product/${arr[i].image}`)
         card.querySelector('h3').innerHTML = arr[i].title
         card.querySelector('span').innerHTML = arr[i].price
-        card.classList.add('display')
+        card.classList.add(classDisplay)
         cardList.appendChild(card)
     }
 }
 
 function clearCards(){
     for (let item of cardList.querySelectorAll('LI')){
-        if (item.classList.contains('display')){
+        if (item.classList.contains(classDisplay)){
             item.remove()
         }
     }
@@ -133,7 +135,7 @@ function showInfo(id){
             cardInfo.querySelector('h3').innerHTML = item.title
             cardInfo.querySelector('p').innerHTML = item.description
             cardInfo.querySelector('span').innerHTML = item.price
-            cardInfo.classList.add('display')
+            cardInfo.classList.add(classDisplay)
         }
     }
 }
@@ -157,5 +159,5 @@ btnBy.addEventListener('click', ()=>{
 function clear(){
     clearCards()
     clearCategory()
-    cardInfo.classList.remove('display')
+    cardInfo.classList.remove(classDisplay)
 }
