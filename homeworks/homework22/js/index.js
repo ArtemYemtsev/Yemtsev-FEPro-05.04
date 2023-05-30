@@ -2,10 +2,12 @@ let slides = document.querySelectorAll(".slider__block__item");
 let curentSlide = 0
 
 function toSlide(n){
+    const classShowing = 'slider__block__item showing'
+    const classNoShowing = 'slider__block__item'
     controls(n)
-    slides[curentSlide].className = 'slider__block__item'
+    slides[curentSlide].className = classNoShowing
     curentSlide = n
-    slides[curentSlide].className = 'slider__block__item showing'
+    slides[curentSlide].className = classShowing
 }
 
 function controls(n){
