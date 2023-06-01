@@ -86,22 +86,15 @@ body{
     background-color: #fff;
     margin-bottom: 10px;
     cursor: pointer;
-}
-
-.shop__form__cards__item:hover{
-    transform: scale(1.1);
-}
-
-.shop__form__cards__item:first-child {
-    display: none;
-}
-
-.card {
     border: 1px solid #436d81;
     border-radius: 12px;
     padding: 15px;
     width: 200px;
     height: 100%;
+}
+
+.shop__form__cards__item:hover{
+    transform: scale(1.1);
 }
 
 .card__image {
@@ -127,8 +120,7 @@ body{
     font-weight: 700;
     padding: 10px 0;
 }
-.card__price,
-.card-info__price span{
+.price{
     margin-right: 5px;
 }
 
