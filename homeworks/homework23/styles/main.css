@@ -153,7 +153,8 @@ body{
     line-height: 20px;
 }
 
-.card-info__btn {
+.card-info__btn,
+.order__form__controls__btn {
     border-radius: 5px;
     background: #ff7f00;
     color: #fff;
@@ -164,16 +165,242 @@ body{
     margin: 0 auto;
 }
 
-.card-info__btn:hover{
+.card-info__btn:hover,
+.order__form__controls__btn:hover{
     transform: scaleX(1.1);
     background: #f6360b;
 }
 
 .display.card,
-.display.card-info{
+.display.card-info,
+.display.popup{
     display: block;
 }
 
 .active-card{
     transform: scale(1.1);
 }
+
+.popup{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+    background: rgba(198, 225, 234, 0.5);
+}
+
+.popup__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all 0.2 ease;
+    font-size: 50px;
+    line-height: 30px;
+    font-weight: 400;
+    text-decoration: none;
+    color: #436d81;
+}
+
+.popup__close:hover{
+    color: #f6360b;
+}
+
+.order {
+    display: none;
+    color: #436d81;
+}
+
+.order__form {
+    width: 530px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #436d81;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.order__form__title,
+.order-info__inner__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+}
+
+.order__form__desc {
+    color: #ff7f00;
+    text-align: center;
+}
+
+.order__form__offer {
+    display: flex;
+    padding: 15px 0;
+
+}
+.order__form__offer__img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.order__form__offer__title {
+    font-weight: 700;
+    padding: 15px 30px;
+}
+
+.order__form__fio,
+.order__form__city,
+.order__form__post,
+.order__form__payment-method,
+.order__form__amount,
+.order__form__comments,
+.order__form__controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.order__form__fio{
+    max-width: 250px;
+}
+
+.order__form__item{
+    padding: 10px 0;
+}
+
+.order__form__label {
+    margin-right: auto;
+}
+
+.name,
+.order__form__comments__field,
+.order__form__city__list,
+.order__form__post__list {
+    border-radius: 12px;
+    line-height: 18px;
+    border: 1px solid #436d81;
+    padding: 2px;
+    outline: none;
+}
+
+.name::placeholder {
+    font-style: italic;
+}
+
+.name:focus {
+    border: 1px solid #ff7f00;
+}
+
+.required{
+    color: #ff7f00;
+}
+
+.order__form__city__list {
+    width: 200px;
+}
+
+.order__form__post__list {
+    width: 200px;
+}
+
+.order__form__payment-method__item {
+    padding: 3px 0;
+}
+
+.order__form__amount {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order__form__amount__field {
+    border: 1px solid #436d81;
+    outline: none;
+    width: 50px;
+    font-size: 18px;
+}
+
+.order__form__total-price {
+    margin-left: 10px;
+    text-align: right;
+    display: flex;
+}
+
+.total-price-value{
+    width: 100px;
+    color: #ff7f00;
+    font-weight: 700;
+    margin: 0 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    text-align: right;
+}
+
+.order__form__comments__field {
+    width: 100%;
+    margin-left: 30px;
+    padding: 5px;
+}
+
+.order__form__controls__btn {
+    border-radius: 5px;
+    background: #ff7f00;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    display: block;
+}
+
+.valid{
+    border: 1px solid #8dc462;
+}
+
+.valid::after{
+    content: "V";
+    color: #0eb329;
+}
+
+.invalid{
+    border: 1px solid #f6360b
+}
+
+.invalid::after{
+    content: "X";
+    color: red;
+}
+
+.order-info{
+    width: 530px;
+    min-height: 90%;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #436d81;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 30;
+    display: none;
+    color: #436d81;
+}
+
+.order-info__list__item{
+    padding: 3px 0;
+}
+
+.submit-order,
+.submit-order:hover{
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
