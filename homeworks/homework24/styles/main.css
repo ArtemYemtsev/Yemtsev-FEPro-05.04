@@ -154,7 +154,8 @@ body{
 }
 
 .card-info__btn,
-.order__form__controls__btn {
+.order__form__controls__btn,
+.signup__form__btn {
     border-radius: 5px;
     background: #ff7f00;
     color: #fff;
@@ -166,7 +167,8 @@ body{
 }
 
 .card-info__btn:hover,
-.order__form__controls__btn:hover{
+.order__form__controls__btn:hover,
+.signup__form__btn:hover {
     transform: scaleX(1.1);
     background: #f6360b;
 }
@@ -281,7 +283,8 @@ body{
 .name,
 .order__form__comments__field,
 .order__form__city__list,
-.order__form__post__list {
+.order__form__post__list,
+.signup__form__item__input {
     border-radius: 12px;
     line-height: 18px;
     border: 1px solid #436d81;
@@ -289,7 +292,8 @@ body{
     outline: none;
 }
 
-.name::placeholder {
+.name::placeholder,
+.signup__form__item__input::placeholder {
     font-style: italic;
 }
 
@@ -404,3 +408,120 @@ body{
     transform: translateX(-50%);
 }
 
+.signup-link,
+.home-link{
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    background: #8dc462;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #8dc462;
+}
+
+.signup-link:hover,
+.home-link:hover{
+    background: #fff;
+    color: #8dc462;
+    border: 1px solid #436d81;
+}
+
+.home-link{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.signup {
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.signup__form {
+    border: 1px solid #436d81;
+    border-radius: 12px;
+    padding: 15px;
+    background: #fff;
+}
+
+.signup__form__field {
+    padding: 3px 0;
+}
+
+.signup__form__title {
+    color: #436d81;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+.signup__form__desc {
+    color: #ff7f00;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.signup__form__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px 5px 0;
+}
+
+.signup__form__item__label {
+    color: #436d81;
+}
+
+.signup__form__item__input{
+    width: 250px;
+}
+
+.signup__form__field--inner {
+    color: #436d81;
+    padding: 5px;
+    border: 1px solid #436d81;
+    border-radius: 12px;
+}
+
+.signup__form__item__lang {
+    padding: 3px 0;
+}
+
+.signup__form__item__lang__item{
+    padding: 3px 0;
+    margin-bottom: 10px;
+}
+
+.signup__form__btns {
+    margin: 0 auto;
+    display: flex;
+}
+
+.table-info{
+    width: 530px;
+    min-height: 90%;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #436d81;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 30;
+    display: none;
+    color: #436d81;
+}
+
+.table {
+    border-spacing: 0;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.table td{
+    padding: 10px 30px;
+    text-align: center;
+    border: 1px solid #436d81;
+}

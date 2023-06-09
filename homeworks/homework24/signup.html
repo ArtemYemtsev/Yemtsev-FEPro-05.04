@@ -6,14 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/main.css">
-    <script src="js/index.js" defer></script>
+    <script src="js/signup.js" defer></script>
     <title>Регистрация</title>
 </head>
 <body>
     <div class="signup">
+        <a href="index.html" class="home-link">На главную</a>
         <div class="container">
-            <form action="" class="signup__form">
-                
+            <form action="" class="signup__form" id="signupForm">
+                <fieldset class="signup__form__field">
+                    <legend class="signup__form__title">Регистрация</legend>
+                    <p class="signup__form__desc">Заполните все поля формы</p>
+                    <div class="signup__form__item">
+                        <label for="firstName" class="signup__form__item__label">Имя</label>
+                        <input type="text" name="first-name" id="firstName" class="signup__form__item__input" placeholder="Имя" required>
+                    </div>
+                    <div class="signup__form__item">
+                        <label for="lastName" class="signup__form__item__label">Фамилия</label>
+                        <input type="text" name="last-name" id="lastName" class="signup__form__item__input" placeholder="Фамилия" required>
+                    </div>
+                    <div class="signup__form__item">
+                        <label for="birthDate" class="signup__form__item__label">Дата рождения</label>
+                        <input type="text" name="birth-date" id="birthDate" class="signup__form__item__input" placeholder="ДД/ММ/ГГГГ" required>
+                    </div>
+                    <div class="signup__form__item">
+                        <fieldset class="signup__form__field--inner">
+                            <legend>Пол:</legend>
+                                <input type="radio" name="gender" value="Мужчина" id="genderMale" class="signup__form__item__input--radio" checked>
+                                <label for="genderMale" class="signup__form__item__label">Мужчина</label>
+                                <input type="radio" name="gender" value="Женщина" id="genderFemale" class="signup__form__item__input--radio">
+                                <label for="genderFemale" class="signup__form__item__label">Женщина</label>
+                        </fieldset>
+                    </div>
+                    <div class="signup__form__item">
+                        <label for="city" class="signup__form__item__label">Город:</label>
+                        <select name="city" id="city" class="signup__form__item__input" required>
+                            <option value="">Выбирете город</option>
+                        </select>
+                    </div>
+                    <div class="signup__form__item">
+                        <label for="address" class="signup__form__item__label">Введите свой адрес:</label>
+                        <textarea name="address" id="address" cols="30" rows="3" class="signup__form__item__input" required></textarea>
+                    </div>
+                    <div class="signup__form__item">
+                        <fieldset class="signup__form__field--inner">
+                            <legend>Выбирете языки, которыми владеете</legend>
+                                <ul class="signup__form__item__lang">
+                                    <li>
+                                        <input type="checkbox" name="lang1" value="Украинский" class="signup__form__item__lang__item" id="lang1">
+                                        <label for="lang1">Украинский</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="lang2" value="Русский" class="signup__form__item__lang__item" id="lang2">
+                                        <label for="lang2">Русский</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="lang3" value="Английский" class="signup__form__item__lang__item" id="lang3">
+                                        <label for="lang3">Английский</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="lang4" value="Польский" class="signup__form__item__lang__item" id="lang4">
+                                        <label for="lang4">Польский</label>
+                                    </li>
+                                </ul>
+                        </fieldset>
+                    </div>
+                    <div class="signup__form__btns">
+                        <button type="reset" class="signup__form__btn">Очистить</button>
+                        <button type="button" class="signup__form__btn" id="btnDone">Сохранить</button>
+                    </div>
+                </fieldset>
+                <div class="table-info" id="infoTable">
+                    <h3 class="signup__form__title">Ваши данные</h3>
+                    <a href="#" class="popup__close">&times;</a>
+                </div>
             </form>
         </div>
     </div>

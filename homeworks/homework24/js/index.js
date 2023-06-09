@@ -447,3 +447,5 @@ const closePopup = (className) => {
         document.querySelector(`.${className}`).classList.remove(CLASS_DISPLAY)
     })
 }
+
+
