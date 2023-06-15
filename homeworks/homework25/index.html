@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="js/index.js" defer></script>
+    <title>Yemtsev-hw23</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">
+                BabyStore
+            </h1>
+            <a href="signup.html" class="signup-link">Регистрация</a>
+        </div>
+    </header>
+    <div class="shop">
+        <div class="container">
+            <div class="shop__form">
+                <div class="shop__form__category">
+                    <h2 class="shop__form__category__title">
+                        Категории
+                    </h2>
+                    <ul class="shop__form__category__list" id="category"></ul>
+                    <button class="shop__form__my__orders" id="myOrders">Мои заказы</button>
+                    <button class="shop__form__my__orders notdisplay" id="backToCat">Категории</button>
+                </div>
+                <div class="shop__form__my__orders__list notdisplay" id="orderList">
+                    
+                </div>
+                <ul class="shop__form__cards" id="card-list"></ul>
+                <div class="shop__form__info card-info" id="card-info">
+                    <h3 class="card-info__title">&nbsp;</h3>
+                    <p class="card-info__desription"></p>
+                    <p class="card-info__price"><span class="price"></span>&#8372;</p>
+                    <button class="card-info__btn" id="btnBy">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order popup">
+        <div class="container">
+            <form action="" class="order__form" id="orderForm" name="orderForm">
+                <h2 class="order__form__title">Оформление заказа</h2>
+                <p class="order__form__desc">Заполните обязательные поля для оформления заказа</p>
+                <a href="#" class="popup__close">&times;</a>
+                <div class="order__form__offer">
+                </div>
+                <div class="order__form__fio">
+                    <label for="first-name" class="order__form__label required">Имя</label>
+                    <input type="text" class="order__form__first-name name input-item" placeholder="Имя" name="first-name" id="first-name" required>
+                </div>
+                <div class="order__form__fio">
+                    <label for="last-name" class="order__form__label required">Фамилия</label>
+                    <input type="text" class="order__form__last-name name input-item" placeholder="Фамилия" name="last-name" id="last-name" required>
+                </div>
+                <div class="order__form__fio">
+                    <label for="father-name" class="order__form__label">Отчество</label>
+                    <input type="text" class="order__form__father-name name input-item" placeholder="Отчество" name="father-name" id="father-name">
+                </div>
+                <div class="order__form__city">
+                    <lable for="city" class="order__form__label required">Город</lable>
+                    <select class="order__form__city__list input-item" name="city" id="city" required>
+                        <option value="" selected>Выберите город</option>
+                    </select>
+                </div>
+                <div class="order__form__post">
+                    <lable for="post-office" class="order__form__label required">Отделение Новой почты</lable>
+                    <select class="order__form__post__list input-item" name="post-office" id="post-office" required>
+                        <option value="">Отделение почты</option>
+                    </select>
+                </div>
+                <div class="order__form__payment-method">
+                    <h3 class="order__form__payment-method__title required">Способ оплаты</h3>
+                    <div>
+                        <div class="order__form__payment-method__item">
+                            <input type="radio" name="payment" value="cash" class="order__form__payment-method__opt input-item" id="payment-post" checked>
+                            <label for="payment-post" class="order__form__label">Послеоплата</label>
+                        </div>
+                        <div class="order__form__payment-method__item">
+                            <input type="radio" name="payment" value="bank_card" class="order__form__payment-method__opt input-item" id="payment-card">
+                            <label for="payment-card" class="order__form__label">Оплата банковской картой</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="order__form__amount">
+                    <label for="amount" class="order__form__label">Количество</label>
+                    <input type="number" value="1" class="order__form__amount__field input-item" min="1" name="amount" id="amount">
+                    <div class="order__form__total-price">
+                        Сумма 
+                        <input type="text" value="" name="total" class="total-price-value input-item">
+                        &#8372;
+                    </div>
+                </div>
+                <div class="order__form__comments">
+                    <label for="comments" class="order__form__label">Коментарии</label>
+                    <textarea name="comments" id="comments" cols="30" rows="10" class="order__form__comments__field input-item"></textarea>
+                </div>
+                <div class="order__form__controls">
+                    <button type="reset" class="order__form__controls__btn">Очистить</button>
+                    <button type="button" class="order__form__controls__btn" id="btn-buy">Купить</button>
+                </div>
+                <div class="order-info popup" id="order-info">
+                    <div class="container">
+                        <div class="order-info__inner">
+                            <h3 class="order-info__inner__title">
+                                Информация о заказе
+                            </h3>
+                            <a href="#" class="popup__close">&times;</a>
+                            <div class="order-info__inner__desc"></div>
+                            <ul class="order-info__list" id="orderInfoList">
+                            </ul>
+                            <button type="submit" class="order__form__controls__btn submit-order" id="submit-order">Подтвердить покупку</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
