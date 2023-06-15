@@ -104,6 +104,9 @@ const CLASS_CARD_IMG = 'card__image'
 const CLASS_CARD_TITLE = 'card__title'
 const CLASS_CARD_PRICE = 'card__price'
 const CLASS_CARD_PRICE_VALUE = 'price'
+const CLASS_NOTDISPLAY = 'notdisplay'
+const CLASS_ACCORDION = 'accordion'
+const CLASS_PANEL = 'panel'
 
 let offerBuffer = []
 
@@ -194,7 +197,6 @@ function showInfo(id){
             cardInfo.querySelector(`.${CLASS_CARD_PRICE_VALUE}`).innerHTML = item.price
             cardInfo.classList.add(CLASS_DISPLAY)
             cardInfo.title = id
-            console.log(cardInfo)
         }
     }
 }
@@ -423,6 +425,11 @@ function orderTotal(inputValArr){
         li.innerHTML = `${OUTPUT_LIST_TITLE[item]}: ${inputValArr[item]}`
         totalList.appendChild(li)
     }
+
+    let submit = document.getElementById('submit-order')
+    submit.addEventListener('click', () => {
+        toStorage (inputValArr)
+    })
 }
 
 function renderInfo (className) {
@@ -448,4 +455,232 @@ const closePopup = (className) => {
     })
 }
 
+let Counter = function(){
+    let i = 0
+    return function(){
+        return i++
+    }
+}
 
+function toStorage (inputValArr) {
+    let orders = []
+    let order = {
+        date:"",
+        image:"",
+        title:"",
+        customer:"",
+        city:"",
+        postOffice:"",
+        payment:"",
+        amount:"",
+        totalPrice:"",
+        comment:""
+    }
+
+    let varArr = [
+        date(), 
+        getInfo()[0].image, 
+        getInfo()[0].title, 
+        inputValArr.toSpliced(3, inputValArr.length-3).join(' ')
+    ].concat(inputValArr.slice(3,inputValArr.length-1))
+
+    let counter = Counter()
+
+    for(let prop in order){
+        Object.defineProperty(order, prop, {
+            value: varArr[counter()],
+        });
+    }
+
+    const MY_ORDERS_STORAGE = localStorage.getItem('myOrders')
+    if(MY_ORDERS_STORAGE != null){
+        orders = JSON.parse(MY_ORDERS_STORAGE)
+    } 
+    orders.push(order)
+    localStorage.setItem('myOrders', JSON.stringify(orders))
+    orders = []
+}
+
+function getFromStorege () {
+    const MY_ORDERS_STORAGE = localStorage.getItem('myOrders')
+    if(MY_ORDERS_STORAGE != null){
+        return JSON.parse(MY_ORDERS_STORAGE)
+    } else return false
+}
+
+const date = () => {
+    let d = new Date()
+    let res = [addZero(d.getDate()), addZero(d.getMonth() + 1), d.getFullYear()].join('.');
+    let time = [addZero(d.getHours()), addZero(d.getMinutes()), addZero(d.getSeconds())].join(':')
+    function addZero (value) { if (+value < 10) return '0' + value
+        return value
+    }
+    return `${res} ${time}`
+}
+
+let myOrders = document.getElementById('myOrders')
+myOrders.addEventListener('click', () => {
+    const CLASS_CAT_TITLE = 'shop__form__category__title'
+    let titleBlock = document.querySelector(`.${CLASS_CAT_TITLE}`)
+    titleBlock.innerHTML = 'Мои заказы'
+
+    let backToCat = document.getElementById('backToCat')
+
+    myOrders.classList.add(CLASS_NOTDISPLAY)
+    categoryList.classList.add(CLASS_NOTDISPLAY)
+    backToCat.classList.remove(CLASS_NOTDISPLAY)
+
+    let cardList = document.getElementById('card-list')
+    cardList.classList.add(CLASS_NOTDISPLAY)
+    cardInfo.classList.remove(CLASS_DISPLAY)
+
+    renderOrderList ()
+    accordion()
+
+    backToCat.addEventListener('click', () => {
+
+        titleBlock.innerHTML = 'Категории'
+
+        categoryList.classList.remove(CLASS_NOTDISPLAY)
+        myOrders.classList.remove(CLASS_NOTDISPLAY)
+        backToCat.classList.add(CLASS_NOTDISPLAY)
+        cardList.classList.remove(CLASS_NOTDISPLAY)
+
+        closeOrderList()
+
+    })
+})
+
+function renderOrderList (){
+    const CLASS_ORDER_LIST_MSG = 'oreder__list__massege'
+    let orderList = document.getElementById('orderList')
+    if (orderList.classList.contains(CLASS_NOTDISPLAY)){
+        orderList.classList.remove(CLASS_NOTDISPLAY)
+    }
+
+    clearOrderList ()
+    
+    if(getFromStorege()){
+        createAccordion (getFromStorege())
+    } else {
+        orderList.innerHTML = ''
+        let massege = document.createElement('P')
+        massege.classList.add(CLASS_ORDER_LIST_MSG)
+        massege.innerText = 'Список заказов пуст.'
+        orderList.appendChild(massege)
+    }
+}
+
+function clearOrderList () {
+    let list = orderList.querySelectorAll(`.${CLASS_ACCORDION}, .${CLASS_PANEL}`)
+    if (list.length > 0){
+        for(let item of list){
+            item.remove()
+        }
+    }
+}
+
+function createAccordion (myOrdersArr){
+    let orderList = document.getElementById('orderList')
+    const FIELD_NAME = ['Дата заказа','Фото','Наименование','Покупатель','Город','Отделение почты','Способ оплаты','Количество','Цена (грн.)','Коментарии']
+    
+    let counter = []
+    for(let item = 0; item < myOrdersArr.length; item++){
+        
+        counter[item] = Counter()
+        let btnAcc = document.createElement('BUTTON')
+        let accBlock = document.createElement('UL')
+        btnAcc.classList.add(CLASS_ACCORDION)
+        accBlock.classList.add(CLASS_PANEL)
+
+        orderList.appendChild(btnAcc)
+        orderList.appendChild(accBlock)
+
+        for(let prop in myOrdersArr[item]){
+            const CONDITION_HEADER = prop === 'date' || prop === 'title' || prop === 'totalPrice'
+            if (CONDITION_HEADER){
+                let span = document.createElement('SPAN')
+                if (prop === 'date'){span.id = myOrdersArr[item][prop]}
+                if (prop === 'totalPrice'){
+                    span.innerText = `${myOrdersArr[item][prop]} грн.`
+                    btnAcc.appendChild(span)
+                } else {
+                    span.innerText = `${myOrdersArr[item][prop]} `
+                    btnAcc.appendChild(span)
+                }
+            }
+
+            let li = document.createElement('LI')
+            li.classList.add('panel__item')
+            if (prop === 'image'){
+                let img = document.createElement('IMG')
+                img.classList.add('panel__item__img')
+                img.setAttribute('src',`images/product/${myOrdersArr[item][prop]}`)
+                li.innerHTML = `${FIELD_NAME[counter[item]()]}: `
+                accBlock.appendChild(li.appendChild(img))
+            } else {
+                li.innerHTML = `${FIELD_NAME[counter[item]()]}: ${myOrdersArr[item][prop]}`
+                accBlock.appendChild(li)
+            }
+        }
+
+        let deleteOrder = document.createElement('P')
+        deleteOrder.innerText = 'Удалить'
+        accBlock.appendChild(deleteOrder)
+        deleteOrder.classList.add('delete__order__item')
+        deleteOrder.setAttribute('id',myOrdersArr[item].date)
+
+        deleteOrder.addEventListener('click', () => {
+            deleteItemFromStorage(deleteOrder.id)
+            accordion()
+        })
+    }
+}
+
+function deleteItemFromStorage (date) {
+    
+    let storage = JSON.parse(localStorage.getItem('myOrders'))
+    for (let item of storage){
+        if(item.date === date){
+            storage.splice(storage.indexOf(item),1)
+        }
+    }
+    if (storage.length === 0){
+        localStorage.removeItem('myOrders')
+        renderOrderList()
+        return
+    }
+    localStorage.removeItem('myOrders')
+    localStorage.setItem('myOrders',JSON.stringify(storage))
+    
+    renderOrderList()
+}
+
+const closeOrderList = () => {
+    let orderList = document.getElementById('orderList')
+    orderList.classList.add(CLASS_NOTDISPLAY)
+}
+
+function accordion(){
+    let acc = document.getElementsByClassName(CLASS_ACCORDION);
+    let i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+
+            this.classList.toggle("active-acc");
+
+            let panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+            if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+            } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+}

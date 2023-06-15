@@ -155,7 +155,8 @@ body{
 
 .card-info__btn,
 .order__form__controls__btn,
-.signup__form__btn {
+.signup__form__btn,
+.delete__order__item {
     border-radius: 5px;
     background: #ff7f00;
     color: #fff;
@@ -168,7 +169,8 @@ body{
 
 .card-info__btn:hover,
 .order__form__controls__btn:hover,
-.signup__form__btn:hover {
+.signup__form__btn:hover,
+.delete__order__item:hover {
     transform: scaleX(1.1);
     background: #f6360b;
 }
@@ -177,6 +179,15 @@ body{
 .display.card-info,
 .display.popup{
     display: block;
+}
+
+.notdisplay{
+    display: none;
+}
+
+.hide{
+    opacity: 0;
+    visibility: 0;
 }
 
 .active-card{
@@ -524,4 +535,102 @@ body{
     padding: 10px 30px;
     text-align: center;
     border: 1px solid #436d81;
+}
+
+.shop__form__my__orders{
+    outline: none;
+    border: 1px solid #8dc462;
+    border-radius: 5px;
+    color:#fff;
+    background: #8dc462;
+    padding: 5px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.shop__form__my__orders:hover {
+    color: #ff7f00;
+    background: #fff;
+    border: 1px solid #436d81;
+}
+
+.shop__form__my__orders__list {
+    border-radius: 15px;
+    width: 100%;
+    border: 1px solid #436d81;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #fff;
+    color: #436d81;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border: 1px solid #436d81;
+}
+    
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active-acc, .accordion:hover {
+    background-color: #8dc462;
+}
+
+  /* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #ff7f00;
+    float: right;
+    margin-left: 5px;
+}
+
+.active-acc:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.panel {
+    padding: 5px 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    color: #436d81;
+    height: 100%;
+}
+
+.panel__item {
+    padding: 3px 0;
+}
+
+.panel__item__img {
+    width: 50px;
+    height: 50px;
+}
+
+.oreder__list__massege{
+    padding: 10px;
+    background: #fff;
+    color: #ff7f00;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.delete__order__item {
+    display: inline-block;
 }
