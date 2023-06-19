@@ -1,7 +1,7 @@
 let input = document.getElementById('postInput')
 let postBtn = document.getElementById('postBtn')
 
-const PATTERN = /^[1-9][0-9]?$|^100$/
+const PATTERN = /^[1-9]+[0-9]?/
 const BASE_URL = 'https://jsonplaceholder.typicode.com'
 
 const CLASS_VALID = 'valid'
@@ -48,10 +48,15 @@ postBtn.addEventListener('click', () => {
 
 function postRequest (id) {
     fetch(`${BASE_URL}/posts/${id}`)
+        .then(res => res.ok ? res : Promise.reject(res))
         .then(res => res.json())
         .then(res => renderPost(res))
         .catch(error => {
             console.error('PostRequestError',error)
+            if (error.status == 404){error.errorText = 'Not found'}
+            let postBlock = document.querySelector(`.${CLASS_POST_RESP}`)
+            postBlock.classList.add(CLASS_DISPLAY)
+            postBlock.innerHTML = `PostRequestError, Error code: ${error.status} ${error.errorText}, URL: ${error.url}`
         })
 }
 
@@ -103,10 +108,15 @@ function renderComments (comment) {
 
 function commentsRequest (postId) {
     fetch(`${BASE_URL}/posts/${postId}/comments`)
+        .then(res => res.ok ? res : Promise.reject(res))
         .then((res) => res.json())
         .then((res) => renderComments(res))
         .catch(error => {
             console.error('PostCommentsRequestError',error)
+            if (error.status == 404){error.errorText = 'Not found'}
+            let commBlock = document.querySelector(`.${CLASS_COMMENTS}`)
+            commBlock.classList.add(CLASS_DISPLAY)
+            commBlock.innerHTML = `PostCommentsRequestError, Error code: ${error.status} ${error.errorText}, URL: ${error.url}`
         })
 }
 
