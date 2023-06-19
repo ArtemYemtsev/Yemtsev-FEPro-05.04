@@ -23,7 +23,7 @@ cityList.addEventListener('change', (event) => {
 })
 
 function XHRequest (city) {
-    const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
+    const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
     const UNITS = 'units=metric'
     const APPID = 'APPID=5d066958a60d315387d9492393935c19'
     
@@ -61,7 +61,7 @@ function XHRequest (city) {
 
 function renderWeather (info) {
     const titleInfo = ['Город:','Температура, C:','Давление, mm:','Описание:','Влажность, %:','Скорость ветра, m/s:','Направление, град.:','']
-    const BASE_ICON_URL = 'http://openweathermap.org/img/w/'
+    const BASE_ICON_URL = 'https://openweathermap.org/img/w/'
 
     let counter = Counter()
 
