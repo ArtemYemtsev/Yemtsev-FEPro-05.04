@@ -9,13 +9,14 @@ function renderCityList () {
         cityList.options[cityList.options.length] = new Option(item,item)
     }
 }
+
 renderCityList ()
 
 let cityList = document.getElementById('city')
 cityList.addEventListener('change', (event) => {
     const CITY_VALUE = event.target.value
-    if(CITY_VALUE.trim() != '') {
-        XHRequest (CITY_VALUE)
+    if (CITY_VALUE.trim() != '') {
+        XHRequest(CITY_VALUE)
     } else {
         let infoBlock = document.querySelector(`.${CLASS_WEATHER}`)
         infoBlock.innerHTML = ''
@@ -29,34 +30,37 @@ function XHRequest (city) {
     
     let xhr = new XMLHttpRequest()
 
-    let infoArr =[]
-
     xhr.open('GET',`${BASE_URL}?q=${city}&${UNITS}&${APPID}`)
     xhr.responseType = 'json'
     xhr.send()
 
     xhr.onload = function(){
         if(xhr.status != 200){
-            let infoBlock = document.querySelector(`.${CLASS_WEATHER}`)
-            infoBlock.innerHTML = `Ошибка ${xhr.status}, ${xhr.statusText}`
-            console.log(`Ошибка ${xhr.status}, ${xhr.statusText}`)
-
+            errRequest(xhr)
         } else {
-            let res = xhr.response
-            infoArr = [
-                res.name,
-                res.main.temp,
-                res.main.pressure,
-                res.weather[0].description,
-                res.main.humidity,
-                res.wind.speed,
-                res.wind.deg,
-                res.weather[0].icon
-            ]
-
-            renderWeather(infoArr)
+            renderWeather(parsingResp(xhr.response))
         }
     }
+}
+
+function parsingResp (res) {
+    
+return [
+        res.name,
+        res.main.temp,
+        res.main.pressure,
+        res.weather[0].description,
+        res.main.humidity,
+        res.wind.speed,
+        res.wind.deg,
+        res.weather[0].icon
+        ]
+}
+
+const errRequest = (req) => {
+    let infoBlock = document.querySelector(`.${CLASS_WEATHER}`)
+    infoBlock.innerHTML = `Ошибка ${req.status}, ${req.statusText}`
+    console.log(`Ошибка ${req.status}, ${req.statusText}`)
 }
 
 function renderWeather (info) {
