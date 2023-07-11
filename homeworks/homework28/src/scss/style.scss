@@ -1,0 +1,14 @@
+@import "fonts";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat;
+    background: #f7b786;
+    margin: 0;
+    padding: 0;
+}
+
+@import "content";
