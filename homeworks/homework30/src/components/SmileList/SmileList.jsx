@@ -38,7 +38,7 @@ export const SmileList = () => {
                         key={ id }
                         id={ id } 
                         title={ title } 
-                        img={ `/images/${image}`}
+                        img={ `images/${image}`}
                         counter={ counter }
                         hendlerClick={hendlerClick}
                         /> 
@@ -47,7 +47,7 @@ export const SmileList = () => {
             <Button hendlerClick={showResults}>{'Show Results'}</Button>
             <Result 
                 text={ winner.title } 
-                img={ `/images/${winner.image}`} 
+                img={ `images/${winner.image}`} 
                 title={ winner.title }  />
         </>
     )
