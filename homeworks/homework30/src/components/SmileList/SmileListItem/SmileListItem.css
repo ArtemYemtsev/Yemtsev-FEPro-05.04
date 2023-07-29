@@ -1,0 +1,18 @@
+.smile-list-item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.smile-list-item:hover {
+    scale: 1.1;
+}
+
+.smile-list-item__img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.smile-list-item__title {
+    color: #1e5fa0;
+}
