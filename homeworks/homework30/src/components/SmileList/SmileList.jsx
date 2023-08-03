@@ -26,7 +26,11 @@ export const SmileList = () => {
 
     const showResults = () => {
         setWinner(() => {
-            return smiles.reduce((prev, cur) => cur?.counter > prev.counter ? cur : prev, {counter:-Infinity})
+            const NO_MATCH = {
+                title: 'No Winner',
+                image: 'res_icon.png'
+            }
+            return smiles.reduce((prev, cur) => cur?.counter === prev.counter ? NO_MATCH : cur?.counter > prev.counter ? cur : prev)
         })
     }
 
