@@ -30,7 +30,14 @@ export const SmileList = () => {
                 title: 'No Winner',
                 image: 'res_icon.png'
             }
-            return smiles.reduce((prev, cur) => cur?.counter === prev.counter ? NO_MATCH : cur?.counter > prev.counter ? cur : prev)
+            let win = smiles.reduce((prev, cur) => cur?.counter > prev.counter ? cur : prev)
+            let count = 0
+            smiles.forEach((item) =>{
+                if (item.counter === win.counter) {
+                    count++
+                } 
+            } )
+            return count > 1 ? NO_MATCH : win 
         })
     }
 
