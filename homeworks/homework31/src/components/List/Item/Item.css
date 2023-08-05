@@ -1,0 +1,22 @@
+.item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 10px auto;
+    border: 2px solid #999;
+    border-radius: 10px;
+}
+
+.item__text {
+    flex: 0 1 60%;
+    text-align: left;
+}
+
+.item__date {
+    color: #999
+}
+
+.item--complete {
+    border: 2px solid #23d134;
+    color: #23d134;
+}

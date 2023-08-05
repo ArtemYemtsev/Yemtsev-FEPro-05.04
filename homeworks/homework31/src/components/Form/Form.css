@@ -1,0 +1,12 @@
+.form {
+    padding: 20px 0;
+}
+
+.form__input {
+    width: 60%;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #999;
+}
