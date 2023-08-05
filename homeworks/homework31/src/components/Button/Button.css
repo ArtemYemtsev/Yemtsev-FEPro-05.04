@@ -1,0 +1,32 @@
+.button {
+    cursor: pointer;
+    color: #FFF;
+    background: #3caaef;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+    margin: 0 5px;
+    letter-spacing: 1px;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 1px 1px #3caaef;
+}
+
+.button--delete {
+    background-color: #d12323;
+}
+
+.button--delete:hover {
+    box-shadow: 0px 0px 1px 1px #d12323;
+}
+
+.button--completed {
+    background-color: #23d134;
+}
+
+.button--completed:hover {
+    box-shadow: 0px 0px 1px 1px #23d134;
+}
