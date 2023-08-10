@@ -4,7 +4,6 @@ import { ROUTES } from "../../constants/routerPath";
 export const Album = () => {
     const { albums } = useLoaderData();
     const { state } = useNavigation();
-    console.log(albums)
 
     return (
         <>

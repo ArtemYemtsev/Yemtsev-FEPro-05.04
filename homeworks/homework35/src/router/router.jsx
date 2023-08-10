@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+// import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from 'react-router-dom';
 import { ROUTES } from '../constants/routerPath';
 import { Posts } from '../pages/Posts';
 import { Post } from '../pages/Post';
@@ -13,7 +14,7 @@ import { getAlbumByUser } from "../services/getAlbumByUser";
 import { Photos } from "../pages/Photos";
 import { getPhotosById } from "../services/getPhotosById";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
     {
         path: ROUTES.root,
         element: <Root />,
