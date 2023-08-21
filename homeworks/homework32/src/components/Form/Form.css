@@ -1,0 +1,18 @@
+.form {
+    max-width: 275px;
+    width: 100%;
+    margin: 0 auto;
+    display: none;
+}
+
+.form button {
+    margin-right: 10px;
+}
+
+.form button:last-child {
+    margin-right: 0;
+}
+
+.display {
+    display: block;
+}
