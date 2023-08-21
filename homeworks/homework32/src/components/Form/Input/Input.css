@@ -1,0 +1,28 @@
+.input__block {
+    display: flex;
+    padding: 5px;
+}
+
+.input {
+    padding: 3px;
+    outline: none;
+    border: 1px solid #000;
+}
+
+.label {
+    margin-right: auto;
+    
+}
+
+.label::first-letter {
+    text-transform: uppercase;
+}
+
+.input-valid {
+    border: 1px solid rgb(60, 212, 5);
+}
+
+.input-invalid {
+    border: 1px solid rgb(231, 16, 16);
+}
+
