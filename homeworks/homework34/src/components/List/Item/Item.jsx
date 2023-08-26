@@ -1,14 +1,18 @@
 import { Button } from '../../Button'
 import './Item.css'
 
-export const Item = ({ todo, toggleTD, delTD }) => {
+import { useDispatch } from 'react-redux'
+import { todoToggle, removeTodo } from '../../../store/redusers/todos/todoSlice'
+
+export const Item = ({ todo, delTD }) => {
+    const dispatch = useDispatch()
     
-    const toggleTodo = (todo) => {
-        toggleTD(todo)
+    const toggleHandler = (id) => {
+        dispatch(todoToggle(id))
     }
 
-    const deleteTodo = (todo) => {
-        delTD(todo)
+    const removeHandler = (id) => {
+        dispatch(removeTodo(id))
     }
 
     return (
@@ -19,12 +23,12 @@ export const Item = ({ todo, toggleTD, delTD }) => {
                 <span>{ todo.date }</span>
             </div>
             <Button 
-                hendlerClick={() => toggleTodo(todo)} 
+                hendlerClick={() => toggleHandler(todo.id)} 
                 className={`${ todo.done ? 'button--completed' : ''}`}>
                     {todo.done ? 'Done' : 'In progress'}
             </Button>
             <Button 
-                hendlerClick={() => deleteTodo(todo)} 
+                hendlerClick={() => removeHandler(todo.id)} 
                 className={"button--delete"}>
                     {'Delete'}
             </Button>

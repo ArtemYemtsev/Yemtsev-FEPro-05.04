@@ -1,12 +1,33 @@
 .form {
     padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.form__input__block {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
 }
 
 .form__input {
-    width: 60%;
+    max-width: 400px;
+    width: 100%;
     font-size: 16px;
     padding: 5px;
     border-radius: 10px;
     outline: none;
     border: 1px solid #999;
+}
+
+.form__submit__btn {
+    margin-left: 30px;
+}
+
+.error {
+    width: 150px;
+    display: block;
+    color: rgb(242, 28, 28);
 }
