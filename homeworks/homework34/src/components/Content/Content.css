@@ -1,0 +1,10 @@
+.content {
+    padding: 10px 20px;
+}
+
+.content__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #368ed6;
+    padding: 15px 0;
+}
