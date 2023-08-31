@@ -4,9 +4,7 @@ import { useFormik } from 'formik'
 
 import "./Form.css"
 
-import { inputs } from '../../constants/inputs.js'
 import { validationSchema } from "../../constants/validationSchema.js"
-import { clearInputs } from "../../services/clearInputs.js"
 
 export const Form = () => {
     const formik = useFormik ({
@@ -16,12 +14,38 @@ export const Form = () => {
             tel: '',
         },
         validationSchema,
-        onSubmit: (values, {resetForm}) => {
+        onSubmit: (values, {resetForm, setSubmitting} ) => {
             alert(JSON.stringify(values, null, 2))
-            resetForm({values: ''})
-            clearInputs()
+            setSubmitting(false)
+            resetForm({
+                    values: {
+                        name: '',
+                        email: '',
+                        tel: '',
+                    }})
         },
     })
+
+    const inputs = [
+        {
+            name: 'name',
+            type: 'text',
+            value: formik.values.name,
+            error: formik.errors.name && formik.touched.name ? formik.errors.name : false
+        },
+        {
+            name: 'email',
+            type: 'email',
+            value: formik.values.email,
+            error: formik.errors.email && formik.touched.email ? formik.errors.email : false
+        },
+        {
+            name: 'tel',
+            type: 'tel',
+            value: formik.values.tel,
+            error: formik.errors.tel && formik.touched.tel ? formik.errors.tel : false
+        }
+    ]
 
     return (
         <form onSubmit={formik.handleSubmit} className="form" id="formik_form" autoComplete="off">
@@ -29,34 +53,15 @@ export const Form = () => {
                 <legend className="form__fieldset__title">formik</legend>
                 {inputs.map(item => 
                     <Input 
-                        key={item}
-                        id={item}
-                        label={item}
-                        name={item}
-                        type={
-                            item === 'name'
-                            ?
-                            'text'
-                            :
-                            item === 'email'
-                            ?
-                            'email'
-                            :
-                            'tel'
-                        }
+                        key={item.name}
+                        id={item.name}
+                        label={item.name}
+                        name={item.name}
+                        type={item.type}
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
-                        value={formik.values.item}
-                        error={
-                            item === 'name' 
-                            ?
-                            formik.errors.name && formik.touched.name ? formik.errors.name : false 
-                            :
-                            item === 'email'
-                            ?
-                            formik.errors.email
-                            :
-                            formik.errors.tel}
+                        value={item.value}
+                        error={item.error}
                     />
                 )}
             </fieldset>
