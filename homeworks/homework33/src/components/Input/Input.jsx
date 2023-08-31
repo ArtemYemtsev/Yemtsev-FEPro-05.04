@@ -2,12 +2,12 @@ import classNames from 'classnames'
 
 export const Input = ({id, label, name, type, onChange, onBlur, value, error}) => {
     
-    let validation = error === false || error === undefined ? true : false
+    let validation = !error ? true : false
 
     const inputClass = classNames('input__field', {
         'invalid': validation === false
     })
-
+    
     return (
         <div className="input__block">
             <label htmlFor={id} className="input__label">{label}</label>
