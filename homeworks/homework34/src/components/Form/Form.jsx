@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux'
 import { todoAdd } from '../../store/redusers/todos/todoSlice'
 import { useFormik } from 'formik'
 import { validationSchema } from '../../constants/validationSchema.js';
-import { clearInputs } from '../../services/clearInputs.js'
 
 export const Form = () => {
     const dispatch = useDispatch()
@@ -24,7 +23,6 @@ export const Form = () => {
             }
             dispatch(todoAdd(todo))
             resetForm({values: ''})
-            clearInputs()
         }
     })
     
@@ -43,6 +41,7 @@ export const Form = () => {
                     placeholder="Enter todo text"
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
+                    value={formik.values.todo}
                     className="form__input"
                     autoComplete='off'
                     />
